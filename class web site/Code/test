@@ -1,0 +1,22 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------< [0;36mfr.univlyon1.multimif_2019.projetgrp3:Projet_2019_grp3[0;1m >-------[m
+[[1;34mINFO[m] [1mBuilding Projet Identification Alternant Grp 3 1.0-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ war ]---------------------------------[m
+[[1;33mWARNING[m] The artifact org.hibernate:hibernate-validator:jar:6.0.17.Final has been relocated to org.hibernate.validator:hibernate-validator:jar:6.0.17.Final
+[[1;33mWARNING[m] The artifact org.hibernate:hibernate-validator-cdi:jar:6.0.17.Final has been relocated to org.hibernate.validator:hibernate-validator-cdi:jar:6.0.17.Final
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:3.0.0:clean[m [1m(default-clean)[m @ [36mProjet_2019_grp3[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/mikado/Images/projet_multimif_groupe3/Code/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.5:prepare-agent[m [1m(default-cli)[m @ [36mProjet_2019_grp3[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/mikado/.m2/repository/org/jacoco/org.jacoco.agent/0.8.5/org.jacoco.agent-0.8.5-runtime.jar=destfile=/home/mikado/Images/projet_multimif_groupe3/Code/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.5:report[m [1m(default-cli)[m @ [36mProjet_2019_grp3[0;1m ---[m
+[[1;34mINFO[m] Skipping JaCoCo execution due to missing execution data file.
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  1.329 s
+[[1;34mINFO[m] Finished at: 2019-11-26T18:59:12+01:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m

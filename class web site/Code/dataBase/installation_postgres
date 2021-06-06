@@ -1,0 +1,36 @@
+_Installation JDK11.0.5
+	1- aller sur le site https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html
+	2- cocher accept license Agreement et posseder un compte oracle
+	3- telecharger le tar.gz
+	4- aller dans le répertoire de téléchargement(Téléchargements/)
+	5- tar -xzvf /home/$userName/Téléchargements/jdk-11.0.5_linux-x64_bin.tar.gz
+	6- rm -f /home/clara/Téléchargements/jdk-11.0.5_linux-x64_bin.tar.gz jdk-11.0.5/
+	7- sudo mkdir /usr/lib/java
+	8- sudo mv /home/$userName/Téléchargements/jdk-11.0.5 /usr/lib/java
+	9- sudo update-alternatives --install /usr/bin/java java /usr/lib/java/jdk-11.0.5/bin/java 3000
+	10-sudo update-alternatives --install /usr/bin/javac javac /usr/lib/java/jdk-11.0.5/bin/javac 3000
+	11-export JAVA_HOME=/usr/lib/java/jdk-11.0.5
+	12-export PATH="$PATH:$JAVA_HOME/bin"
+	13-java -version pour checker l'installation
+
+Installation maven
+	1- sudo apt remove maven2
+	2- sudo apt update
+	3- sudo apt install maven
+
+Installation MongoDB
+	1- sudo apt install mongodb
+	2- https://robomongo.org/download
+
+Install postgreSQL
+	1- sudo apt update
+	2- sudo apt install postgresql
+	3- sudo apt install postgresql-contrib
+	4- sudo apt install pgadmin3
+	5- sudo -u postgres psql postgres
+	6- \password postgres
+	7- entrez un mot de passe du genre $admin 
+	8- \q pour quitter
+	9- lancez pgAdmin3
+	--Note : nous allons utiliser la base de donnée par défaut : postgres
+

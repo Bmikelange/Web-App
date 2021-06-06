@@ -1,0 +1,62 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        version="3.0">
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+      <servlet-name>billets</servlet-name>
+      <jsp-file>/WEB-INF/jsp/billets.jsp</jsp-file>
+  </servlet>
+  <servlet>
+      <servlet-name>billet</servlet-name>
+      <jsp-file>/WEB-INF/jsp/billet.jsp</jsp-file>
+  </servlet>
+  <servlet>
+      <servlet-name>gestionGroupes</servlet-name>
+      <jsp-file>/WEB-INF/jsp/gestionGroupes.jsp</jsp-file>
+  </servlet>
+  <servlet>
+      <servlet-name>groupe</servlet-name>
+      <jsp-file>/WEB-INF/jsp/groupe.jsp</jsp-file>
+  </servlet>
+  <servlet>
+      <servlet-name>commentaires</servlet-name>
+      <jsp-file>/WEB-INF/jsp/commentaires.jsp</jsp-file>
+  </servlet>
+  <servlet>
+      <servlet-name>commentaire</servlet-name>
+      <jsp-file>/WEB-INF/jsp/commentaire.jsp</jsp-file>
+  </servlet>
+  <servlet>
+      <servlet-name>saisie</servlet-name>
+      <jsp-file>/WEB-INF/jsp/saisie.jsp</jsp-file>
+  </servlet>
+
+
+  <filter>
+    <filter-name>VerifConnexion</filter-name>
+    <filter-class>fr.univlyon1.m1if.m1if03.servlets.VerifConnexion</filter-class>
+  </filter>
+  <!-- <filter>
+    <filter-name>VerifAutorisation</filter-name>
+    <filter-class>fr.univlyon1.m1if.m1if03.servlets.VerifAutorisation</filter-class>
+  </filter> -->
+
+  <filter-mapping>
+    <filter-name>VerifConnexion</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+  <!--<filter-mapping>
+    <filter-name>VerifAutorisation</filter-name>
+    <url-pattern>/AjoutBillet</url-pattern>
+  </filter-mapping>-->
+
+</web-app>

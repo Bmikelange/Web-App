@@ -1,0 +1,46 @@
+{
+    "STUDENTS":
+            [
+                {
+                    "id":"p1602520",
+                    "password":"mp0",
+                    "name":"NOM0",
+                    "firstName":"Prénom0",
+                    "graduation":"M1 INFO"
+                },
+
+                {
+                    "id":"p1602521",
+                    "password":"mp1",
+                    "name":"NOM1",
+                    "firstName":"Prénom1",
+                    "graduation":"M1 INFO"
+                }
+
+            ],
+    "PROFESSORS":
+            [
+
+            ],
+    "SECRETARIES":
+            [
+
+            ],
+    "PRESENCES_RECORDS":
+            [
+              {
+                  "presenceRecordPK":
+                      {
+                          "idLesson":"ADE6050726f6a65745f323031392d323032302d37313432302d302d30",
+                          "idStudent":"p1602520"
+                      },
+                  "presence": true
+              }
+            ],
+    "PROFESSORS_LESSONS":
+            [
+
+            ]
+
+
+}

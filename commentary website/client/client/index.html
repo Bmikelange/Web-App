@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js" async></script>
+
+
+<script src="../js/fusion.js" async></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<head>
+    <title>Mes Copains !</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <div id="test"></div>
+    <h1> Mes Copains (en AJAX) !</h1>
+    <div id="errMsg"></div>
+    <aside>
+        <nav class="navbar navbar-inverse">
+            <ul  class="nav navbar-nav">
+                <li><a href='#index'>Accueil</a></li>
+                <li><a href='#groupes'>Groupes</a></li>
+                <li><a href='#groupe'>Groupe</a></li>
+                <li><a href='#billet'>Billet</a></li>
+                <li><a href='#users'>Utilisateurs</a></li>
+                <li><a href='#deco'>Déconnexion</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <section id='index' class='active'>
+        <h2>Bienvenue sur Chatons.org</h2>
+        <div name="replier" id="Bienvenue">
+            <form method="post">
+                <p>Entrez votre pseudo :
+                    <input type="text" name="pseudo" id="pseudo">
+                    <input type="button" value="Connexion" onclick="connect()">
+                </p>
+            </form>
+        </div>
+    </section>
+    <section id='groupes' class='inactive'>
+        <h2>Liste des groupes</h2>
+        <div name="replier" id="ListeGroupes">
+            <!-- Pour chaque élément de la liste, l'interface doit proposer à l'utilisateur de :
+                - s'inscrire au groupe
+                - se désinscrire du groupe
+                - accéder au groupe
+                - supprimer le groupe
+                Les résultats de l'opération invoquée par le client seront affichés dans le div "errMsg" -->
+            <form>
+                <p>Créer un nouveau groupe :
+                    <input type="text" name="groupe" id="nomNewGroupe" value="test">
+                    <input type="button" value="Créer" onclick="createGroupe()">
+                </p>
+            </form>
+            <p><a href='#deco'>Déconnexion</a></p>
+            <ul class="list-group" id='groupesList'>
+            </ul>
+        </div>
+    </section>
+    <section id='groupe' class='inactive'>
+        <h2>Groupe ... </h2>
+        <div name="replier" id="Groupe">
+            <h3>Description</h3>
+            <p id="grpDesc"></p>
+            <h3>Billets</h3>
+            <!-- Pour chaque élément de la liste, l'interface doit proposer à l'utilisateur de :
+                - visualiser le billet
+                - modifier le titre du billet (aide : attribut contenteditable)
+                - supprimer le billet
+            -->
+            <form method='post' action='Billets'>
+                <p>Créer un nouveau billet :
+                    <input type='text' name='titre' id="titreNewBillet" value="testTitreBillet">
+                    <textarea name="contenu" id="contenuNewBillet" value="testContenu"></textarea>
+                    <input type='button' value='Envoyer' onclick="createBillet()">
+                </p>
+            </form>
+            <ul class="list-group" id='bltList'></ul>
+            <hr>
+            <p><a href='#groupes'>Liste des groupes</a></p>
+        </div>
+    </section>
+    <section id='billet' class='inactive'>
+        <h2>Billet A Montrer</h2>
+        <div name="replier" id="Billet">
+            <p>Ceci est un billet de <span id='bltAuteur'></span>.</p>
+            <h1 id="bltTitre" /></h1>
+            <div class="contenu" id="bltContenu"></div>
+            <h2>Commentaires</h2>
+            <!-- Pour chaque élément de la liste, l'interface doit proposer à l'utilisateur de :
+                - modifier le commentaire
+                - supprimer le commentaire
+            -->
+            <ul class="list-group" id='commentList'></ul>
+            <form method="post" action="Commentaires">
+                <p>Ajouter un commentaire :
+                    <input type="text" name="commentaire" id="commentaireCommentaire">
+                    <input type="button" value="Envoyer" onclick="createCommentaire()">
+                </p>
+            </form>
+            <p><a href="#groupe">Retour au groupe</a></p>
+        </div>
+    </section>
+    <section id='users' class='inactive'>
+        <h2>Liste des utilisateurs</h2>
+        <div name="replier">
+            <!-- Rien de particulier à faire ici, juste lister les pseudos. -->
+            <ul class="list-group" id='usersList'></ul>
+            <p><a href='#deco'>Déconnexion</a></p>
+        </div>
+    </section>
+    <section id='deco' class='inactive'>
+        <h2>Déconnexion</h2>
+        <div name="replier">
+            <form method="post" action="Deco">
+                <p>Validez ce formulaire pour vous déconnecter :
+                    <input type="checkbox" name="user"> Supprimer l'utilisateur
+                    <input type="button" value="Deconnexion" onclick="disconnect()">
+                </p>
+            </form>
+            <p><a href='#index'>Retour à la page d'accueil</a></p>
+        </div>
+    </section>
+
+</body>
+
+<script id="templateData" type="x-tmpl-mustache">{{ data }}</script>
+<script id="templateLi" type="x-tmpl-mustache">
+    <li class="list-group-item" > {{ data }} </li>
+</script>
+
+<script id="templateButtonGroupe" type="x-tmpl-mustache">
+    <li class="list-group-item" > <a href="#Groupe" onclick="getGroupe('{{ id }}')">{{ data }}</a> <span class="badge" style = "color:black;"><button class="suppression" onclick="deleteGroupe(this,' {{ data }} ' )"> X </button></span> </li>
+</script>
+
+<script id="templateButtonBillet" type="x-tmpl-mustache">
+    <li class="list-group-item"> <a href="#Billet" onclick="getBillet('{{ id }}')">{{ data }}</a> <span class="badge" style = "color:black;"> <button class="suppression" onclick="deleteBillet(this,' {{ data }} ' )"> X </button></span> </li>
+</script>
+
+<script id="templateButtonComment" type="x-tmpl-mustache">
+    <li class="list-group-item"><p contenteditable="true" style="display: inline table;">{{ texte }}</p> <span class="badge" style = "color:black;"> <button contenteditable="false" onclick="modifyCommentaire(this,' {{ data }} ' )"> modifier </button><button contenteditable="false" class="suppression" onclick="deleteCommentaire(this,' {{ data }} ' )"> X </button></span> </li>
+</script>
+
+<script async>
+    replierAll();
+    deplier("#Bienvenue");
+
+    $('a').click(function() {
+        replier();
+        $($(this).attr("href")).children('div[name="replier"]').slideDown();
+    });
+
+    $('h2').click(function() {
+        $(this).parent().children('div[name="replier"]').slideToggle();
+    });
+</script>
+
+</html>

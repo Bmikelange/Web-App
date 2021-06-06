@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<?xml-stylesheet href="xsl/heure.xsl" type="text/xsl"?>
+    <html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Test AJAX</title>
+        <script src="js/ajax.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    </head>
+
+    <body onload="loadXMLAsynchroneously('post', 'time.jsp',null,'timeDiv')">
+
+        <body>
+            <h1>Test AJAX</h1>
+            <div id="timeDiv">Affichez l'heure ici...</div>
+        </body>
+        <script>
+            function heure() {
+                $.ajax({
+                    url: "time.jsp",
+                    type: 'POST',
+                    dataType: 'xml',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    async: true,
+
+                    success: function(data, status) {
+                        console.log(data.childNodes);
+                        document.getElementById("timeDiv").innerHTML = "";
+                        Array.prototype.slice.call(data.childNodes).forEach(element => {
+                            document.getElementById("timeDiv").appendChild(element);
+                        });
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        alert('Ajax request failed.');
+                        console.log(xhr);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                });
+            }
+            // heure();
+            setInterval(function() {
+                loadXMLAsynchroneously('post', 'time.jsp', null, 'timeDiv')
+            }, 1000);
+        </script>
+
+    </html>
